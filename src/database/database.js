@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 
-const sequelize = new Sequelize("nombre_de_la_base_de_datos", "tu_usuario", "tu_contrasena", {
+const sequelize = new Sequelize("", "", "", {
   host: "localhost",
   dialect: "postgres",
 });

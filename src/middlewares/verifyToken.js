@@ -1,17 +1,19 @@
-import jwt from "jsonwebtoken";  
-import  {JWT_SECRET}  from "../config/config.js";
-
-
+import jwt from "jsonwebtoken";
+import { JWT_SECRET } from "../config/config.js";
 
 export const createToken = (user) => {
-  const token = jwt.sign({ userId: user._id, roleId: user.roleId }, JWT_SECRET, {
-    expiresIn: "1h",
-  });
+  const token = jwt.sign(
+    { userId: user._id, roleId: user.roleId },
+    JWT_SECRET,
+    {
+      expiresIn: "1h",
+    }
+  );
   return token;
 };
 
 export const verifyToken = (req, res, next) => {
-  const token = req.headers["authorization"];
+  const token = req.cookies.accessToken;
   if (!token) {
     return res.status(403).send({ message: "No token provided" });
   }
